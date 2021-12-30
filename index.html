@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - Hello DOM - Benchmark 2</title>
+    <style>
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      body {
+        padding: 2rem;
+        max-width: 50rem;
+        margin: auto;
+      }
+
+      code {
+        background: lightgrey;
+        font-size: 0.9rem;
+      }
+
+      .locks {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .lock * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .lock {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        font-size: 1rem;
+        padding: 0.5rem;
+        background: #ddd;
+        border-radius: 0.5em;
+        border: 2px solid #bbb;
+      }
+
+      .lock__status {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        font-size: 1.1em;
+        background: #222;
+        color: #ddd;
+        border-radius: 5%;
+        padding: 0 0.5rem;
+        min-width: 8rem;
+      }
+
+      .lock__controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.15rem;
+      }
+
+      .lock__key[data-key="0"] {
+        grid-column: 2;
+      }
+
+      .lock__reset {
+        grid-column: span 3;
+      }
+
+      .lock__reset--admin {
+        background: rgb(255, 0, 0);
+        color: white;
+        padding: 0.25em;
+        border-radius: 0.2em;
+        border: none;
+        font-weight: bold;
+      }
+    </style>
+    <script src="KeyCodeDoorLock.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <h1>JavaScript - Hello DOM - Benchmark 2</h1>
+    <p>
+      Your job for this benchmark is to write the JavaScript required to connect
+      the provided HTML and CSS to the provided implementation of a key code
+      door lock.
+    </p>
+    <div class="locks">
+      <div class="lock" data-answer="8675309">
+        <p class="lock__status">LOCKED</p>
+        <div class="lock__controls">
+          <button class="lock__key" data-key="1">1</button>
+          <button class="lock__key" data-key="2">2</button>
+          <button class="lock__key" data-key="3">3</button>
+          <button class="lock__key" data-key="4">4</button>
+          <button class="lock__key" data-key="5">5</button>
+          <button class="lock__key" data-key="6">6</button>
+          <button class="lock__key" data-key="7">7</button>
+          <button class="lock__key" data-key="8">8</button>
+          <button class="lock__key" data-key="9">9</button>
+          <button class="lock__key" data-key="0">0</button>
+          <button class="lock__reset">RESET</button>
+          <button
+            class="lock__reset lock__reset--admin"
+            data-reset-admin="true"
+          >
+            ADMIN RESET
+          </button>
+        </div>
+      </div>
+      <div class="lock" data-answer="1234">
+        <p class="lock__status">LOCKED</p>
+        <div class="lock__controls">
+          <button class="lock__key" data-key="1">1</button>
+          <button class="lock__key" data-key="2">2</button>
+          <button class="lock__key" data-key="3">3</button>
+          <button class="lock__key" data-key="4">4</button>
+          <button class="lock__key" data-key="5">5</button>
+          <button class="lock__key" data-key="6">6</button>
+          <button class="lock__key" data-key="7">7</button>
+          <button class="lock__key" data-key="8">8</button>
+          <button class="lock__key" data-key="9">9</button>
+          <button class="lock__key" data-key="0">0</button>
+          <button class="lock__reset">RESET</button>
+          <button
+            class="lock__reset lock__reset--admin"
+            data-reset-admin="true"
+          >
+            ADMIN RESET
+          </button>
+        </div>
+      </div>
+      <div class="lock" data-answer="1111">
+        <p class="lock__status">LOCKED</p>
+        <div class="lock__controls">
+          <button class="lock__key" data-key="1">1</button>
+          <button class="lock__key" data-key="2">2</button>
+          <button class="lock__key" data-key="3">3</button>
+          <button class="lock__key" data-key="4">4</button>
+          <button class="lock__key" data-key="5">5</button>
+          <button class="lock__key" data-key="6">6</button>
+          <button class="lock__key" data-key="7">7</button>
+          <button class="lock__key" data-key="8">8</button>
+          <button class="lock__key" data-key="9">9</button>
+          <button class="lock__key" data-key="0">0</button>
+          <button class="lock__reset">RESET</button>
+          <button
+            class="lock__reset lock__reset--admin"
+            data-reset-admin="true"
+          >
+            ADMIN RESET
+          </button>
+        </div>
+      </div>
+      <div class="lock" data-answer="1234">
+        <p class="lock__status">LOCKED</p>
+        <div class="lock__controls">
+          <button class="lock__key" data-key="1">1</button>
+          <button class="lock__key" data-key="2">2</button>
+          <button class="lock__key" data-key="3">3</button>
+          <button class="lock__key" data-key="4">4</button>
+          <button class="lock__key" data-key="5">5</button>
+          <button class="lock__key" data-key="6">6</button>
+          <button class="lock__key" data-key="7">7</button>
+          <button class="lock__key" data-key="8">8</button>
+          <button class="lock__key" data-key="9">9</button>
+          <button class="lock__key" data-key="0">0</button>
+          <button class="lock__reset">RESET</button>
+          <button
+            class="lock__reset lock__reset--admin"
+            data-reset-admin="true"
+          >
+            ADMIN RESET
+          </button>
+        </div>
+      </div>
+    </div>
+    <p>
+      When the page loads, you should create an instance of the
+      <code>KeyCodeDoorLock</code> to manage the state of each
+      <code>.lock</code>. The constructor requires that you provide an answer
+      keycode as a string. For example, you could provide the string
+      <code>"1234"</code> to create a lock that expects the user to enter 1,
+      then 2, then 3, then 4. The answer keycode for each lock is specified in a
+      <code>data-answer</code> attribute on the lock element.
+    </p>
+    <p>
+      When the user presses any of the keys on the number pad,
+      <code>enterKey</code> should be called with the appropriate number and the
+      status of the lock should be updated on the page.
+    </p>
+    <p>
+      When the reset button is pressed, the <code>reset</code> should be called
+      and the status UI should be updated.
+    </p>
+    <p>
+      When the admin reset button is pressed, the <code>reset</code> button
+      should be called, but you should provide an argument specifying that this
+      is an admin reset. To do so, you provide an object with an admin property
+      with the value <code>true</code> (<code>{admin: true}</code>).
+    </p>
+    <p>
+      With all of this in place, you should have a working key code lock UI!
+      Your finished UI should do the following things:
+    </p>
+    <section>
+      <p><input type="checkbox" /> Starts off locked</p>
+      <p>
+        <input type="checkbox" /> Answer keycode is configured from
+        <code>data-answer</code>
+      </p>
+      <p>
+        <input type="checkbox" /> Gets unlocked when the user provides the right
+        code
+      </p>
+      <p>
+        <input type="checkbox" /> Requires the user to reset their entered keys
+        if they make a mistake
+      </p>
+      <p><input type="checkbox" /> Locks when reset</p>
+      <p>
+        <input type="checkbox" /> Hard locks after three consecutive resets
+        without unlocking
+      </p>
+      <p>
+        <input type="checkbox" /> Does not process entered keys while hard
+        locked
+      </p>
+      <p><input type="checkbox" /> Does not process resets while hard locked</p>
+      <p><input type="checkbox" /> Can be reset from a hard lock by an admin</p>
+      <p>
+        <input type="checkbox" /> Admin resets reset the consecutive reset count
+      </p>
+      <p><input type="checkbox" /> Admin resets reset the entered keys</p>
+      <p><input type="checkbox" /> Each individual lock handled correctly.</p>
+    </section>
+  </body>
+</html>
